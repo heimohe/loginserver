@@ -94,11 +94,7 @@ func TokenAuth(signedToken,secret string ) string {
 
 	}
 
-	beego.Debug("Token token:", token)
-
 	claims, ok := token.Claims.(jwt.MapClaims)
-
-	beego.Debug("Token:", claims)
 
 	if !ok {
 
