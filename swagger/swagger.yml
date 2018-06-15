@@ -1,0 +1,98 @@
+swagger: "2.0"
+info: {}
+basePath: /twelve
+paths:
+  /user/login:
+    get:
+      tags:
+      - user
+      description: Logs out current logged in user session
+      operationId: UserController.login
+      parameters:
+      - in: query
+        name: AcountId
+        description: The login_id for login
+        required: true
+        type: string
+      - in: query
+        name: Password
+        description: The password for login
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} logout success'
+  /user/logout:
+    get:
+      tags:
+      - user
+      description: Logs out current logged in user session
+      operationId: UserController.logout
+      responses:
+        "200":
+          description: '{string} logout success'
+  /user/regist:
+    post:
+      tags:
+      - user
+      description: regist users
+      operationId: UserController.CreateUser
+      parameters:
+      - in: body
+        name: body
+        description: body for user content
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegistData'
+      responses:
+        "200":
+          description: '{int} models.User.Id'
+        "403":
+          description: body is empty
+  /user/updatepwd:
+    post:
+      tags:
+      - user
+      description: update user password
+      operationId: UserController.update user password
+      parameters:
+      - in: body
+        name: body
+        description: body for user content
+        required: true
+        schema:
+          $ref: '#/definitions/models.MotifyPwd'
+      responses:
+        "200":
+          description: '{int} models.User.Id'
+        "403":
+          description: body is empty
+definitions:
+  models.MotifyPwd:
+    title: MotifyPwd
+    type: object
+    properties:
+      AcountId:
+        type: string
+      AuthToken:
+        type: string
+      NewPwd:
+        type: string
+      OldPwd:
+        type: string
+  models.RegistData:
+    title: RegistData
+    type: object
+    properties:
+      AcountId:
+        type: string
+      Email:
+        type: string
+      Nickname:
+        type: string
+      Password:
+        type: string
+tags:
+- name: user
+  description: |
+    Operations about Users
