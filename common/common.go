@@ -11,6 +11,8 @@ import(
 	"encoding/base64"
 
 	"github.com/dgrijalva/jwt-go"
+	
+	"encoding/json"
 
 )
 
@@ -111,5 +113,58 @@ func TokenAuth(signedToken,secret string ) string {
 func GetSecretStr() string {
 
 	return "secret"
+
+}
+
+func StringInterfaceToJson(objmap map[string]interface{}) string {
+	
+	if b, err := json.Marshal(objmap); err != nil {
+	
+		return ""
+	
+	} else {
+
+		return string(b)
+
+	}
+
+}
+
+func MapToJson(objmap map[string]string) string {
+
+	if b, err := json.Marshal(objmap); err != nil {
+	
+		return ""
+	
+	} else {
+	
+		return string(b)
+	
+	}
+
+}
+
+func ArrayToJson(objmap []string) string {
+
+	if b, err := json.Marshal(objmap); err != nil {
+	
+		return ""
+	
+	} else {
+	
+		return string(b)
+	}
+}
+
+func InterfaceToJson(objmap interface{} ) string {
+
+	if b, err := json.Marshal(objmap); err != nil {
+	
+		return ""
+	
+	} else {
+	
+		return string(b)
+	}
 
 }
